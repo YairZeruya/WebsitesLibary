@@ -1,4 +1,4 @@
-package com.example.websiteslibary;
+package com.example.mywebsites;
 
 import java.util.ArrayList;
 

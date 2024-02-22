@@ -1,4 +1,4 @@
-package com.example.websiteslibary;
+package com.example.mywebsites;
 
 import android.util.Log;
 

@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import com.example.mywebsites.Websites;
+import com.example.mywebsites.WebsitesController;
+import com.example.mywebsites.WebsitesPerCountry;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
