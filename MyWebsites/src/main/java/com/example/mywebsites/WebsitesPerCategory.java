@@ -12,29 +12,40 @@ public class WebsitesPerCategory {
 
         public WebsitesForCategory() {}
 
-        public String getCountry() {
+        private String getCountry() {
             return country;
         }
 
-        public void setCountry(String country) {
+        private void setCountry(String country) {
             this.country = country;
         }
 
 
-        public String getCategory() {
+        private String getCategory() {
             return category;
         }
 
-        public void setCategory(String ctegory) {
+        private void setCategory(String ctegory) {
             this.category = category;
         }
 
-        public ArrayList<String> getWebsites() {
+        private ArrayList<String> getUrls() {
             return urls;
         }
 
-        public void setWebsites(ArrayList<String> urls) {
+        private void setUrls(ArrayList<String> urls) {
             this.urls = urls;
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Country: ").append(country).append("\n");
+            stringBuilder.append("Category: ").append(category).append("\n");
+            stringBuilder.append("Websites:\n");
+            for (String website : urls) {
+                stringBuilder.append("- ").append(website).append("\n");
+            }
+            return stringBuilder.toString();
         }
     }
 

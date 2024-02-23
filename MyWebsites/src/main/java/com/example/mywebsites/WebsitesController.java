@@ -5,64 +5,32 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class WebsitesController implements Callback<WebsitesPerCountry> {
-    static final String BASE_URL = "http://192.168.1.218:8088";
+public class WebsitesController {
 
-    private CallBack_Websites callBackWebsites;
+    private static final String BASE_URL = "http://192.168.1.218:8088/";
+    private static final String TAG = "WebsiteController";
 
+    private WebsitesAPI websitesAPI;
 
-    public WebsitesController(CallBack_Websites callBackWebsites) {
-        this.callBackWebsites = callBackWebsites;
-    }
-
-    public void fetchAllWebsites(String country) {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
+    public WebsitesController() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        WebsitesAPI websitesAPI = retrofit.create(WebsitesAPI.class);
-
-        Call<WebsitesPerCountry> call = websitesAPI.loadWebsitesByCountry(country);
-        call.enqueue(this);
+        websitesAPI = retrofit.create(WebsitesAPI.class);
     }
 
-
-    @Override
-    public void onResponse(Call<WebsitesPerCountry> call, Response<WebsitesPerCountry> response) {
-        if (response.isSuccessful()) {
-            WebsitesPerCountry websitesPerCountry = response.body();
-            callBackWebsites.success(websitesPerCountry);
-            int x = 0;
-            Log.d("pttt", "" + response.body());
-
-        } else {
-            callBackWebsites.error("" + response.errorBody());
-            Log.d("pttt", "" + response.errorBody());
-
-        }
+    public void getWebsitesByCountry(String country, Callback<Map<String, WebsitesPerCategory>> callback) {
+        Call<Map<String, WebsitesPerCategory>> call = websitesAPI.getWebsitesByCountry(country);
+        call.enqueue(callback);
     }
-
-    @Override
-    public void onFailure(Call<WebsitesPerCountry> call, Throwable t) {
-        callBackWebsites.error(t.getMessage());
-        t.printStackTrace();
-    }
-
-
-    public interface CallBack_Websites {
-        void success(WebsitesPerCountry websitesPerCountry);
-        void error(String error);
-    }
-
 }

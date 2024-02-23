@@ -24,4 +24,17 @@ public class WebsitesPerCountry {
         this.websitesPerCountry = websitesPerCountry;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Country: ").append(country).append("\n");
+
+        if (websitesPerCountry != null) {
+            for (WebsitesPerCategory category : websitesPerCountry) {
+                stringBuilder.append(category.toString());
+            }
+        }
+
+        return stringBuilder.toString();
+    }
 }
