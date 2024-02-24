@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoriesActivity">
+
+    <!-- First Column of Flags -->
+    <LinearLayout
+        android:id="@+id/firstColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageButton
+            android:id="@+id/btnIsrael"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/israel"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnGermany"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/germany"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnCanada"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/canada"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnItaly"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/italy"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/firstColumn"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnUSA"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/united_states"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnFrance"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/france"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnSpain"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/spain"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btnUK"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/united_kingdom"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
