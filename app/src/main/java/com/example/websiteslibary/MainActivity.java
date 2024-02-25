@@ -6,6 +6,8 @@ import android.widget.Toast;
 import com.example.mywebsites.WebsitesController;
 import com.example.mywebsites.WebsitesPerCategory;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        websitesController = new WebsitesController();
+       // websitesController = new WebsitesController();
 
         main_BTN_getWebsites = findViewById(R.id.mian_BTN_getWebsites);
         main_BTN_getWebsites.setOnClickListener(v -> getWebsitesByCountryAndCategory("usa", "economy"));
@@ -37,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
     private void getWebsitesByCountryAndCategory(String country, String category) {
         WebsitesController.CallBack_Websites callBackWebsites = new WebsitesController.CallBack_Websites() {
             @Override
-            public void success(WebsitesPerCategory websitesPerCategory) {
+            public void success(List<WebsitesPerCategory> websitesPerCategory) {
                 Log.d("pttt", "success: " + websitesPerCategory);
                 Toast.makeText(MainActivity.this, websitesPerCategory.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void error(String error) {
+            public void error(String error) {///
 
             }
         };
-        websitesController.getWebsitesByCountryAndCategory(country, category);
+        new WebsitesController(callBackWebsites).getWebsitesByCountryAndCategory(country, category);
     }
 
 }

@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -17,14 +19,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebsitesController {
-
     private static final String BASE_URL = "http://192.168.1.218:8088/";
-    private WebsitesAPI websitesAPI;
 
+    private WebsitesAPI websitesAPI;
     private CallBack_Websites callBackWebsites;
 
-
-    public WebsitesController() {
+    public WebsitesController(CallBack_Websites callBackWebsites) {
+        this.callBackWebsites = callBackWebsites;
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -38,39 +39,34 @@ public class WebsitesController {
     }
 
     public void getWebsitesByCountryAndCategory(String country, String category) {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        websitesAPI = retrofit.create(WebsitesAPI.class);
-        Call<WebsitesPerCategory> call = websitesAPI.getWebsitesByCountryAndCategory(country, category);
-        call.enqueue(internalWebsitesCallBack);
-    }
-
-    private Callback<WebsitesPerCategory> internalWebsitesCallBack = new Callback<WebsitesPerCategory>() {
-        @Override
-        public void onResponse(Call<WebsitesPerCategory> call, Response<WebsitesPerCategory> response) {
-            Log.d("pttt", "onResponse: " + response.body());
-            WebsitesPerCategory websitesPerCategory = response.body();
-            callBackWebsites.success(websitesPerCategory);
-            int x = 0;
+        Call<List<String>> call = websitesAPI.getWebsitesByCountryAndCategory(country, category);
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    List<String> urls = response.body();
+                    List<WebsitesPerCategory> websitesPerCategoryList = new ArrayList<>();
+                    for (String url : urls) {
+                        WebsitesPerCategory websitesPerCategory = new WebsitesPerCategory();
+                        websitesPerCategory.setUrl(url);
+                        websitesPerCategoryList.add(websitesPerCategory);
+                    }
+                    callBackWebsites.success(websitesPerCategoryList);
+                } else {
+                    callBackWebsites.error("Failed to get websites: " + response.code());
+                }
             }
 
-        @Override
-        public void onFailure(Call<WebsitesPerCategory> call, Throwable t) {
-            callBackWebsites.error(t.getMessage());
-            t.printStackTrace();
-        }
-    };
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                callBackWebsites.error("Failed to get websites: " + t.getMessage());
+            }
+        });
+    }
 
-public interface CallBack_Websites {
-    void success(WebsitesPerCategory websitesPerCategory);
-    void error(String error);
-}
+    public interface CallBack_Websites {
+        void success(List<WebsitesPerCategory> websitesPerCategory);
 
+        void error(String error);
+    }
 }

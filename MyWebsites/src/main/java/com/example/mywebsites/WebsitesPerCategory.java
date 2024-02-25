@@ -5,28 +5,18 @@ import java.util.Map;
 
 public class WebsitesPerCategory {
 
-    private Map<String, List<String>> websitesByCategory;
+    private String url;
 
-    public Map<String, List<String>> getWebsitesByCategory() {
-        return websitesByCategory;
+    public String getUrl() {
+        return url;
     }
 
-    public void setWebsitesByCategory(Map<String, List<String>> websitesByCategory) {
-        this.websitesByCategory = websitesByCategory;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (websitesByCategory != null) {
-            for (Map.Entry<String, List<String>> entry : websitesByCategory.entrySet()) {
-                stringBuilder.append(entry.getKey()).append(":").append("\n");
-                List<String> websites = entry.getValue();
-                for (String website : websites) {
-                    stringBuilder.append("- ").append(website).append("\n");
-                }
-            }
-        }
-        return stringBuilder.toString();
+        return "URL: " + url + "\n";
     }
 }
