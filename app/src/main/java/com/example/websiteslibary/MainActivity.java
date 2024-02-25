@@ -1,7 +1,11 @@
 package com.example.websiteslibary;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.example.mywebsites.WebsitesController;
 import com.example.mywebsites.WebsitesPerCategory;
@@ -15,31 +19,34 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MaterialButton main_BTN_getWebsites;
+    private ImageButton btnIsrael;
     private WebsitesController websitesController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_countries);
 
        // websitesController = new WebsitesController();
 
-        main_BTN_getWebsites = findViewById(R.id.mian_BTN_getWebsites);
-        main_BTN_getWebsites.setOnClickListener(v -> getWebsitesByCountryAndCategory("usa", "economy"));
+        btnIsrael = findViewById(R.id.btnIsrael);
+        btnIsrael.setOnClickListener(v -> MoveToCategoriesActivities("israel"));
+        getWebsitesByCountryAndCategory("israel","news");
     }
 
-    //{
-    //  "economy": [
-    //    "https://www.wsj.com/"
-    //  ]
-    //}
+    private void MoveToCategoriesActivities(String country) {
+        // Create an intent to start CategoryActivity
+        Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+        // Add the country as an extra to the intent
+        intent.putExtra("country", country);
+        // Start the activity
+        startActivity(intent);
+    }
 
-
-    private void getWebsitesByCountryAndCategory(String country, String category) {
+        private void getWebsitesByCountryAndCategory(String country, String category) {
         WebsitesController.CallBack_Websites callBackWebsites = new WebsitesController.CallBack_Websites() {
             @Override
-            public void success(List<WebsitesPerCategory> websitesPerCategory) {
+            public void success(@NonNull List<WebsitesPerCategory> websitesPerCategory) {
                 Log.d("pttt", "success: " + websitesPerCategory);
                 Toast.makeText(MainActivity.this, websitesPerCategory.toString(), Toast.LENGTH_SHORT).show();
             }
@@ -51,5 +58,7 @@ public class MainActivity extends AppCompatActivity {
         };
         new WebsitesController(callBackWebsites).getWebsitesByCountryAndCategory(country, category);
     }
+
+
 
 }

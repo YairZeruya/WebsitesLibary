@@ -20,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebsitesController {
     private static final String BASE_URL = "http://192.168.1.218:8088/";
-
     private WebsitesAPI websitesAPI;
     private CallBack_Websites callBackWebsites;
 
