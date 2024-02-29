@@ -20,45 +20,48 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton btnIsrael;
-    private WebsitesController websitesController;
+    private ImageButton btnUSA;
+    private ImageButton btnUK;
+    private ImageButton btnFrance;
+    private ImageButton btnGermany;
+    private ImageButton btnItaly;
+    private ImageButton btnSpain;
+    private ImageButton btnCanada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countries);
+        findviews();
+        setOnClickListeners();
+    }
 
-       // websitesController = new WebsitesController();
-
-        btnIsrael = findViewById(R.id.btnIsrael);
+    private void setOnClickListeners() {
+        btnCanada.setOnClickListener(v -> MoveToCategoriesActivities("canada"));
+        btnSpain.setOnClickListener(v -> MoveToCategoriesActivities("spain"));
+        btnItaly.setOnClickListener(v -> MoveToCategoriesActivities("italy"));
+        btnGermany.setOnClickListener(v -> MoveToCategoriesActivities("germany"));
+        btnFrance.setOnClickListener(v -> MoveToCategoriesActivities("france"));
+        btnUK.setOnClickListener(v -> MoveToCategoriesActivities("uk"));
+        btnUSA.setOnClickListener(v -> MoveToCategoriesActivities("usa"));
         btnIsrael.setOnClickListener(v -> MoveToCategoriesActivities("israel"));
-        getWebsitesByCountryAndCategory("israel","news");
+    }
+
+    private void findviews() {
+        btnIsrael = findViewById(R.id.btnIsrael);
+        btnUSA = findViewById(R.id.btnUSA);
+        btnUK = findViewById(R.id.btnUK);
+        btnFrance = findViewById(R.id.btnFrance);
+        btnGermany = findViewById(R.id.btnGermany);
+        btnItaly = findViewById(R.id.btnItaly);
+        btnSpain = findViewById(R.id.btnSpain);
+        btnCanada = findViewById(R.id.btnCanada);
     }
 
     private void MoveToCategoriesActivities(String country) {
-        // Create an intent to start CategoryActivity
         Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
-        // Add the country as an extra to the intent
         intent.putExtra("country", country);
-        // Start the activity
         startActivity(intent);
     }
-
-        private void getWebsitesByCountryAndCategory(String country, String category) {
-        WebsitesController.CallBack_Websites callBackWebsites = new WebsitesController.CallBack_Websites() {
-            @Override
-            public void success(@NonNull List<WebsitesPerCategory> websitesPerCategory) {
-                Log.d("pttt", "success: " + websitesPerCategory);
-                Toast.makeText(MainActivity.this, websitesPerCategory.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void error(String error) {///
-
-            }
-        };
-        new WebsitesController(callBackWebsites).getWebsitesByCountryAndCategory(country, category);
-    }
-
-
 
 }

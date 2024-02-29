@@ -5,10 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".WebsitesActivity">
 
+    <TextView
+        android:id="@+id/countryCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="country, category"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"/>
+
     <ListView
         android:id="@+id/listViewWebsites"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/countryCategoryName"
         android:padding="30dp" />
 
 </RelativeLayout>

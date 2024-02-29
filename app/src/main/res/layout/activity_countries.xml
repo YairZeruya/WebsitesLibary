@@ -73,7 +73,6 @@
         android:layout_toEndOf="@id/firstColumn"
         android:layout_centerVertical="true"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
         android:orientation="vertical">
 
         <ImageButton

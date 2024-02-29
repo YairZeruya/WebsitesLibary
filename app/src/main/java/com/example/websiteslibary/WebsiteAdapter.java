@@ -1,6 +1,8 @@
 package com.example.websiteslibary;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +30,16 @@ public class WebsiteAdapter extends ArrayAdapter<WebsitesPerCategory> {
         if (listItemView == null) {
             listItemView = LayoutInflater.from(context).inflate(R.layout.list_item_website, parent, false);
         }
-
         // Get the current website
         WebsitesPerCategory currentWebsite = websitesList.get(position);
-
-        // Set the name of the website on the TextView
         TextView websiteNameTextView = listItemView.findViewById(R.id.textViewWebsiteName);
         websiteNameTextView.setText(currentWebsite.getUrl());
 
+        listItemView.setOnClickListener(v -> {
+            String url = currentWebsite.getUrl();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(intent);
+        });
         return listItemView;
     }
 }
