@@ -8,17 +8,6 @@ My Websites Library is an Android library that provides functionality to fetch w
 - **Display Websites**: Display the fetched websites in a ListView. ![Display Websites](images/display_websites.png)
 - **Navigate**: Navigate through countries, categories, and websites. ![Navigate](images/navigate.png)
 
-## Installation
-
-# Usage
-To use this library in your Android project, follow these steps:
-
-1. Add the library to your project's dependencies.
-2. Ensure that your AndroidManifest.xml includes the necessary permissions, such as internet access.
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-
 ## Usage
 
 # MainActivity
@@ -43,4 +32,14 @@ Dependencies
 Retrofit: For making network requests.
 Gson: For JSON serialization/deserialization.
 RecyclerView: For displaying lists efficiently.
+
+## Installation
+
+To use this library in your Android project, follow these steps:
+
+1. Add the library to your project's dependencies.
+2. Ensure that your AndroidManifest.xml includes the necessary permissions, such as internet access.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
 
