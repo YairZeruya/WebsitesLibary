@@ -33,6 +33,7 @@ To use this library in your Android project, follow these steps:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
+
 Usage
 1. MainActivity
 Launches the app.
