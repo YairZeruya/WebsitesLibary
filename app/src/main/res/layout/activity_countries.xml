@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/myTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose country!"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"/>
+
     <!-- First Column of Flags -->
     <LinearLayout
         android:id="@+id/firstColumn"
