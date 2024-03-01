@@ -84,6 +84,7 @@ Displays a list of websites for a specific country and category.
 Receives the country and category names from CategoriesActivity.
 Fetches websites data from the server using WebsitesController.
 Displays the fetched websites in a ListView using WebsiteAdapter.
+Clicking on a website URL navigates to the website in the browser.
 
 ## Dependencies
 **Retrofit**: For making network requests.
