@@ -4,9 +4,9 @@ My Websites Library is an Android library that provides functionality to fetch w
 
 ## Features
 
-- **Fetch Websites**: Fetch websites data from a server based on country and category. ![Fetch Websites](images/fetch_websites.png)
-- **Display Websites**: Display the fetched websites in a ListView. ![Display Websites](images/display_websites.png)
-- **Navigate**: Navigate through countries, categories, and websites. ![Navigate](images/navigate.png)
+- **Fetch Websites**: Fetch websites data from a server based on country and category.
+- **Display Websites**: Display the fetched websites in a ListView.
+- **Navigate**: Navigate through countries, categories, and websites.
 
 ## Usage
 
@@ -27,8 +27,9 @@ Clicking on a category button navigates to the WebsitesActivity with both countr
 Displays a list of websites for a specific country and category.
 Receives the country and category names from CategoriesActivity.
 Fetches websites data from the server using WebsitesController.
-Displays the fetched websites in a ListView using WebsiteAdapter. 
-Dependencies
+Displays the fetched websites in a ListView using WebsiteAdapter.
+
+# Dependencies
 Retrofit: For making network requests.
 Gson: For JSON serialization/deserialization.
 RecyclerView: For displaying lists efficiently.
